@@ -34,18 +34,18 @@ const ShopBycategory = () => {
       <div className="py-6">
         <h1 className="text-center font-bold text-[51px]">Shop By Categories</h1>
         <div className="category animate-flip-up">
-          <div class="flex justify-center flex-wrap items-center gap-8 p-8">
+          <div className="flex justify-center flex-wrap items-center gap-8 p-8">
             {
                category.map((items,i)=>(
-                <div key={i} class="flex flex-col cursor-pointer items-center text-center">
-                <div class="w-[228px] h-[300px] rounded-[100px] overflow-hidden border-2 border-gray-300 shadow-md">
+                <div key={i} className="flex flex-col  items-center text-center">
+                <div className="w-[228px] h-[300px] rounded-[100px] overflow-hidden border-2 border-gray-300 shadow-md">
                   <img
                     src={items.image}
                     alt="Indoor Plant"
-                    class="w-full h-full object-cover"
+                    className="w-full h-full object-cover"
                   />
                 </div>
-                <h3 class="mt-4 text-xl font-semibold text-[#1a1a1a]">
+                <h3 className="mt-4 text-xl font-semibold text-[#1a1a1a]">
                   {items.title}
                 </h3>
               </div>

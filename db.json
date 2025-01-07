@@ -1,0 +1,60 @@
+{
+  "products": [
+    {
+      "name": "Aloe Vera",
+      "originalPrice": 30,
+      "salePrice": 22,
+      "image": "https://i0.wp.com/theaffordableorganicstore.com/wp-content/uploads/2022/02/Products-49.jpg",
+      "id": "1a2b"
+    },
+    {
+      "name": "Snake Plant",
+      "originalPrice": 25,
+      "salePrice": 20,
+      "image": "https://images.squarespace-cdn.com/content/v1/54fbb611e4b0d7c1e151d22a/1610074066643-OP8HDJUWUH8T5MHN879K/Snake+Plant.jpg?format=1000w",
+      "id": "2c3d"
+    },
+    {
+      "name": "Ficus Elastica",
+      "originalPrice": 45,
+      "salePrice": 35,
+      "image": "https://plantdrop.co.uk/cdn/shop/products/ficus-elastica-robusta-rubber-bush-175938.jpg?v=1663280745",
+      "id": "3e4f"
+    },
+    {
+      "name": "Monstera Deliciosa",
+      "originalPrice": 50,
+      "salePrice": 40,
+      "image": "https://www.ugaoo.com/cdn/shop/files/9_dac1c33d-00f2-469a-81f9-287d72f67a38.jpg?v=1710232846&width=1500",
+      "id": "5g6h"
+    },
+    {
+      "name": "ZZ Plant",
+      "originalPrice": 35,
+      "salePrice": 30,
+      "image": "https://myjungleclub.com/cdn/shop/files/Plants-265_zz.webp?v=1711733426&width=1946",
+      "id": "7i8j"
+    },
+    {
+      "name": "Spider Plant",
+      "originalPrice": 18,
+      "salePrice": 15,
+      "image": "https://succulentsbox.com/cdn/shop/files/Spider-Plant-4_2048x_9db66466-44cb-4db2-ac78-00b34a7699b5.jpg?v=1701248056",
+      "id": "9k0l"
+    },
+    {
+      "name": "Philodendron",
+      "originalPrice": 40,
+      "salePrice": 35,
+      "image": "https://bouqs.com/blog/wp-content/uploads/2024/03/shutterstock_2104522187-min-1080x720.jpg",
+      "id": "a1b2"
+    },
+    {
+      "name": "Pothos",
+      "originalPrice": 25,
+      "salePrice": 20,
+      "image": "https://pcfb.gumlet.io/images/articles/golden-pothos-in-bright-living-room.png?w=640&h=426&mode=crop&crop=smart&s=82a0ed0199e5f33e3c490ed80e93f62d",
+      "id": "c3d4"
+    }
+  ]
+}

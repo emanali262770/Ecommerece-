@@ -4,22 +4,25 @@ import logo from "../../Images/logo.png";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { ImCancelCircle } from "react-icons/im";
+import { Link, Outlet } from "react-router-dom";
+
 
 const Navbar = () => {
   const [isopen, setisopen] = useState(false);
 
   return (
-    <div className="w-full bg-white shadow-md fixed top-0 left-0 z-50"> {/* Fixed position */}
+    <div>
+    <div className="w-full bg-white shadow-md fixed top-0 left-0 z-50"> 
       <div className="flex h-[10vh] items-center justify-between max-w-[1350px] mx-auto px-4">
         <div className="flex items-center">
-          <img src={logo} alt="Logo" className="cursor-pointer w-[150px]" />
+         <Link to={'/'}> <img src={logo} alt="Logo" className="cursor-pointer w-[150px]" /></Link>
         </div>
 
         <div className="gap-8 lg:flex hidden font-semibold text-lg">
-          <p className="cursor-pointer hover:text-gray-400 transition">Home</p>
-          <p className="cursor-pointer hover:text-gray-400 transition">Shop</p>
-          <p className="cursor-pointer hover:text-gray-400 transition">About</p>
-          <p className="cursor-pointer hover:text-gray-400 transition">Contact</p>
+        <Link to={'/'}> <p className="cursor-pointer p-3 hover:text-gray-400 transition">Home</p></Link> 
+          <Link to={'/shop'}> <p className="cursor-pointer p-3 hover:text-gray-400 transition">Shop</p></Link> 
+          <Link to={'/about'}>  <p className="cursor-pointer p-3 hover:text-gray-400 transition">About</p></Link>
+           <Link to={'/contact'}><p className="cursor-pointer p-3 hover:text-gray-400 transition">Contact</p></Link> 
         </div>
 
         <div className="flex items-center gap-4">
@@ -50,10 +53,10 @@ const Navbar = () => {
       {isopen && (
         <div className="absolute top-20 left-0 block lg:hidden bg-white w-[400px] shadow-md p-4 rounded-md">
           <div className="gap-8 font-semibold text-lg">
-            <p className="cursor-pointer p-3 hover:text-gray-400 transition">Home</p>
-            <p className="cursor-pointer p-3 hover:text-gray-400 transition">Shop</p>
-            <p className="cursor-pointer p-3 hover:text-gray-400 transition">About</p>
-            <p className="cursor-pointer p-3 hover:text-gray-400 transition">Contact</p>
+          <Link to={'/'}> <p className="cursor-pointer p-3 hover:text-gray-400 transition">Home</p></Link> 
+          <Link to={'/shop'}> <p className="cursor-pointer p-3 hover:text-gray-400 transition">Shop</p></Link> 
+          <Link to={'/about'}>  <p className="cursor-pointer p-3 hover:text-gray-400 transition">About</p></Link>
+           <Link to={'/contact'}><p className="cursor-pointer p-3 hover:text-gray-400 transition">Contact</p></Link> 
             <MdOutlineShoppingCart
               className="text-black ml-3 text-2xl cursor-pointer"
               size={24}
@@ -61,8 +64,12 @@ const Navbar = () => {
           </div>
         </div>
       )}
-      {/* Add a spacer to account for the fixed navbar */}
-    
+     
+      
+
+    </div>
+   <div className="h-[10vh] bg-black"></div>
+   <Outlet/>
     </div>
   );
 };

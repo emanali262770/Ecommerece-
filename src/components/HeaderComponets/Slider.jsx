@@ -1,13 +1,13 @@
-import React from 'react';
-import b1 from '../../Images/b1.png';
-import b2 from '../../Images/b2.png';
-import b3 from '../../Images/b3.png';
+import React from "react";
+import b1 from "../../Images/b1.png";
+import b2 from "../../Images/b2.png";
+import b3 from "../../Images/b3.png";
+import { Link } from "react-router-dom";
 
 const Slider = () => {
   return (
     <div className="w-full bg-[#efeee5]">
-      <div className="main mt-[72px] w-full max-w-[1300px] py-8 flex flex-wrap justify-center items-center gap-4 mx-auto px-4">
-       
+      <div className="main  w-full max-w-[1300px] py-8 flex flex-wrap justify-center items-center gap-4 mx-auto px-4">
         <div className="content1 flex-[1_1_300px] text-center md:text-left">
           <h1 className="text-[36px] md:text-[48px] lg:text-[61px] animate-fade-up font-bold text-[#1a1a1a]">
             Good Friday <br />
@@ -31,7 +31,6 @@ const Slider = () => {
           </div>
         </div>
 
-       
         <div className="content1 flex-[1_1_300px] flex justify-center">
           <img
             src={b2}
@@ -40,7 +39,6 @@ const Slider = () => {
           />
         </div>
 
-       
         <div className="content1 flex-[1_1_300px] animate-fade-up text-center md:text-left">
           <h2 className="text-[18px] md:text-[20px] lg:text-[24px] font-bold text-[#1a1a1a]">
             HousePlant Set Promo
@@ -51,11 +49,15 @@ const Slider = () => {
             className="w-[280px] h-[80px] md:w-[300px] md:h-[90px] lg:w-[364px] lg:h-[100px] mx-auto md:mx-0"
           />
           <p className="text-[#5a5a5a] text-[12px] md:text-[14px] lg:text-[14px] leading-6 py-3 w-full max-w-[400px] mx-auto md:mx-0">
-            I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet.
+            I am text block. Click edit button to change this text. Lorem ipsum
+            dolor sit amet.
           </p>
-          <button className="bg-[#003a34] text-white px-4 md:px-5 py-2 md:py-3 rounded-3xl font-bold mt-3">
-            Shop Now
-          </button>
+          <Link to={"/shop"}>
+            {" "}
+            <button className="bg-[#003a34] text-white px-4 md:px-5 py-2 md:py-3 rounded-3xl font-bold mt-3">
+              Shop Now
+            </button>
+          </Link>
         </div>
       </div>
     </div>

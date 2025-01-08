@@ -6,6 +6,7 @@ import Home from "./components/HeaderComponets/Home";
 import Aboutus from "./components/Aboutus";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer.jsx";
+import Cart from "./components/Cart.jsx";
 const App = () => {
   return (
     <>
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/shop" element={<Shop />} />
           <Route path="/about" element={<Aboutus />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/cart" element={<Cart />} />
         </Route>
       </Routes>
       <Footer />

@@ -1,10 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../Redux/CartSlice";
 async function fetchData() {
   return await axios.get("http://localhost:5000/products");
 }
 const DailyDeal = () => {
+  const dispatch = useDispatch();
+
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["products"],
     queryFn: fetchData,
@@ -13,7 +17,14 @@ const DailyDeal = () => {
   if (isError) {
     console.log(error.message);
   }
-
+  function addtoCart(id) {
+    const filterProducts = data?.data?.find((product) => product.id == id);
+    if (filterProducts) {
+      dispatch(addToCart(filterProducts));
+    }
+   
+    
+  }
   return (
     <div className="w-full bg-[#012b27] text-white py-10 mt-[40px]">
       <div className="w-[90%] mx-auto">
@@ -53,7 +64,10 @@ const DailyDeal = () => {
                       ${product.salePrice}
                     </ins>
                   </p>
-                  <button className="bg-[#012b27] text-white mt-4 px-4 py-2 rounded-full hover:bg-[#01433d] transition">
+                  <button
+                    onClick={() => addtoCart(product.id)}
+                    className="bg-[#012b27] text-white mt-4 px-4 py-2 rounded-full hover:bg-[#01433d] transition"
+                  >
                     Add to cart
                   </button>
                 </div>

@@ -3,6 +3,7 @@ import axios from "axios";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../Redux/CartSlice";
+import { Link } from "react-router-dom";
 async function fetchData() {
   return await axios.get("http://localhost:5000/products");
 }
@@ -46,11 +47,11 @@ const DailyDeal = () => {
                 key={index}
                 className="bg-white text-black p-4 rounded-lg shadow-lg relative"
               >
-                <img
+             <Link to={`/detail/${product.id}`}>  <img
                   src={product.image}
                   alt={product.name}
                   className="w-full h-[200px] object-cover rounded-lg"
-                />
+                /></Link>
                 <span className="bg-[#325e58] text-xs font-bold px-3 py-2 rounded-full text-white absolute top-2 right-3">
                   Sale!
                 </span>

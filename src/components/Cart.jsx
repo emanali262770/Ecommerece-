@@ -1,52 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { productDelete } from "../Redux/CartSlice";
-import { useEffect } from "react";
 
 const Cart = () => {
-  const [pricecounter, setpricecounter] = useState(1);
-  const [input, setinput] = useState("");
-  const [iscoupanapply, setiscoupanapply] = useState(false);
-  const [subtotal, setsubtotal] = useState(0);
-  const [ship, setship] = useState(20);
+  const [quantity, setQuantity] = useState({});
+  const [couponCode, setCouponCode] = useState("");
+  const [isCouponApplied, setIsCouponApplied] = useState(false);
+  const [subtotal, setSubtotal] = useState(0);
+  const shippingCost = 20;
 
   const products = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  function handleDelete(id) {
+
+  
+  const handleDelete = (id) => {
     dispatch(productDelete(id));
-  }
-  function calculation() {
-    const total = products.reduce((acc, product) => {
-      return acc + product.originalPrice * pricecounter;
-    }, 0);
-    setsubtotal(total);
-  }
-  function coupan() {
-    if (input == "eman"&&!iscoupanapply) {
-      setsubtotal((p) => p - 10);
-      setinput("");
-      setiscoupanapply(true)
+    setQuantity((prev) => {
+      const newQuantity = { ...prev };
+      delete newQuantity[id];
+      return newQuantity;
+    });
+  };
+
+  
+  const handleQuantityChange = (id, change) => {
+    setQuantity((prev) => ({
+      ...prev,
+      [id]: Math.max(1, Math.min(10, (prev[id] || 1) + change)),
+    }));
+  };
+
+
+  const calculateSubtotal = () => {
+    const total = products.reduce(
+      (acc, product) => acc + product.originalPrice * (quantity[product.id] || 1),
+      0
+    );
+    setSubtotal(total);
+  };
+
+
+  const handleCouponApply = () => {
+    if (couponCode === "eman" && !isCouponApplied) {
+      setSubtotal((prev) => prev - 10);
+      setCouponCode("");
+      setIsCouponApplied(true);
     } else {
-      alert("Coupan code is not Valid");
+      alert("Invalid coupon code.");
     }
-  }
+  };
 
   useEffect(() => {
-    calculation();
-  }, [pricecounter]);
+    calculateSubtotal();
+  }, [quantity, products]);
 
   return (
     <div className="min-h-screen">
       <div className="container mx-auto py-8 px-4 lg:px-16">
         <h1 className="text-4xl font-semibold mb-6">Shopping cart</h1>
-
-        <div className="grid grid-cols-1 items-center lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 items-center bg-white p-6 rounded-lg shadow-md">
+        <div className="grid grid-cols-1 items-center lg:grid-cols-3 gap-8">        
+          <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-md">
             {products.length > 0 ? (
               products.map((product) => (
                 <div
                   key={product.id}
-                  className="flex  flex-col md:flex-row items-center md:items-start gap-3 justify-between border-b pb-4"
+                  className="flex flex-col md:flex-row items-center py-4 md:items-start gap-3 justify-between border-b pb-4"
                 >
                   <img
                     src={product.image}
@@ -59,22 +77,24 @@ const Cart = () => {
                   </div>
                   <div className="flex items-center space-x-4">
                     <button
-                      disabled={pricecounter == 1}
-                      onClick={() => setpricecounter(pricecounter - 1)}
-                      className={`px-3 py-1 text-xl bg-gray-200 rounded  ${
-                        pricecounter === 1
+                      disabled={quantity[product.id] === 1}
+                      onClick={() => handleQuantityChange(product.id, -1)}
+                      className={`px-3 py-1 text-xl bg-gray-200 rounded ${
+                        quantity[product.id] === 1
                           ? "bg-red-600 text-white"
                           : "bg-gray-200"
                       }`}
                     >
                       -
                     </button>
-                    <p className="text-lg font-medium">{pricecounter}</p>
+                    <p className="text-lg font-medium">
+                      {quantity[product.id] || 1}
+                    </p>
                     <button
-                      disabled={pricecounter == 10}
-                      onClick={() => setpricecounter(pricecounter + 1)}
-                      className={`px-3 py-1 text-xl bg-gray-200 rounded  ${
-                        pricecounter === 10
+                      disabled={quantity[product.id] === 10}
+                      onClick={() => handleQuantityChange(product.id, 1)}
+                      className={`px-3 py-1 text-xl bg-gray-200 rounded ${
+                        quantity[product.id] === 10
                           ? "bg-red-600 text-white"
                           : "bg-gray-200"
                       }`}
@@ -99,7 +119,7 @@ const Cart = () => {
               </h1>
             )}
           </div>
-          {/* Summary Section */}
+       
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-lg font-semibold mb-4">Summary</h2>
             <div className="flex justify-between mb-4">
@@ -108,30 +128,32 @@ const Cart = () => {
             </div>
             <div className="flex justify-between mb-4">
               <p>Shipping</p>
-              <p>$20.00</p>
+              <p>${shippingCost}</p>
             </div>
             <div className="flex justify-between font-semibold text-lg">
               <p>Total</p>
-              <p>USD ${subtotal? subtotal+ship:0}</p>
+              <p>USD ${subtotal + shippingCost}</p>
             </div>
-         
-              <div>
-                <input
-                  type="text"
-                  placeholder="Enter coupon code here"
-                  value={input}
-                  onChange={(e) => setinput(e.target.value)}
-                  className="w-full mt-4 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
-                />
-                <button
-                  onClick={coupan}
-                  className={`w-full mt-4 ${iscoupanapply?'bg-gray-500 hover:bg-gray-500':' bg-black hover:bg-gray-800'} bg-black text-white py-3 rounded-lg `}
-                  disabled={iscoupanapply}
-                >
-                  Apply
-                </button>
-              </div>
-          
+            <div>
+              <input
+                type="text"
+                placeholder="Enter coupon code here"
+                value={couponCode}
+                onChange={(e) => setCouponCode(e.target.value)}
+                className="w-full mt-4 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
+              />
+              <button
+                onClick={handleCouponApply}
+                className={`w-full mt-4 ${
+                  isCouponApplied
+                    ? "bg-gray-500"
+                    : "bg-black hover:bg-gray-800"
+                } text-white py-3 rounded-lg`}
+                disabled={isCouponApplied}
+              >
+                Apply
+              </button>
+            </div>
           </div>
         </div>
       </div>

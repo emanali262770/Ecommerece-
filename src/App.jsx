@@ -7,6 +7,7 @@ import Aboutus from "./components/Aboutus";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer.jsx";
 import Cart from "./components/Cart.jsx";
+import ProductDetail from "./components/ProductDetail.jsx";
 const App = () => {
   return (
     <>
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/about" element={<Aboutus />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/detail/:id" element={<ProductDetail />} />
         </Route>
       </Routes>
       <Footer />

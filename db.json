@@ -6,7 +6,8 @@
       "salePrice": 22,
       "image": "https://i0.wp.com/theaffordableorganicstore.com/wp-content/uploads/2022/02/Products-49.jpg",
       "id": "1a2b",
-      "description": "Aloe Vera is a versatile and low-maintenance plant known for its soothing gel and air-purifying properties. Perfect for your indoor garden."
+      "description": "Aloe Vera is a versatile and low-maintenance plant known for its soothing gel and air-purifying properties. Perfect for your indoor garden.",
+      "quantity": 1
     },
     {
       "name": "Snake Plant",
@@ -14,7 +15,8 @@
       "salePrice": 20,
       "image": "https://images.squarespace-cdn.com/content/v1/54fbb611e4b0d7c1e151d22a/1610074066643-OP8HDJUWUH8T5MHN879K/Snake+Plant.jpg?format=1000w",
       "id": "2c3d",
-      "description": "Snake Plant, also known as Mother-in-Law's Tongue, is an elegant and hardy plant that improves air quality and thrives in low light."
+      "description": "Snake Plant, also known as Mother-in-Law's Tongue, is an elegant and hardy plant that improves air quality and thrives in low light.",
+      "quantity": 1
     },
     {
       "name": "Ficus Elastica",
@@ -22,7 +24,8 @@
       "salePrice": 35,
       "image": "https://plantdrop.co.uk/cdn/shop/products/ficus-elastica-robusta-rubber-bush-175938.jpg?v=1663280745",
       "id": "3e4f",
-      "description": "Ficus Elastica, commonly called the Rubber Plant, is a stunning indoor plant with broad, glossy leaves that add a tropical touch to any space."
+      "description": "Ficus Elastica, commonly called the Rubber Plant, is a stunning indoor plant with broad, glossy leaves that add a tropical touch to any space.",
+      "quantity": 1
     },
     {
       "name": "Monstera Deliciosa",
@@ -30,7 +33,8 @@
       "salePrice": 40,
       "image": "https://www.ugaoo.com/cdn/shop/files/9_dac1c33d-00f2-469a-81f9-287d72f67a38.jpg?v=1710232846&width=1500",
       "id": "5g6h",
-      "description": "Monstera Deliciosa, also known as the Swiss Cheese Plant, is a statement-making houseplant with its large, perforated leaves."
+      "description": "Monstera Deliciosa, also known as the Swiss Cheese Plant, is a statement-making houseplant with its large, perforated leaves.",
+      "quantity": 1
     },
     {
       "name": "ZZ Plant",
@@ -38,7 +42,8 @@
       "salePrice": 30,
       "image": "https://myjungleclub.com/cdn/shop/files/Plants-265_zz.webp?v=1711733426&width=1946",
       "id": "7i8j",
-      "description": "ZZ Plant is a resilient and stylish indoor plant that requires minimal care, making it a great choice for busy plant parents."
+      "description": "ZZ Plant is a resilient and stylish indoor plant that requires minimal care, making it a great choice for busy plant parents.",
+      "quantity": 1
     },
     {
       "name": "Spider Plant",
@@ -46,7 +51,8 @@
       "salePrice": 15,
       "image": "https://succulentsbox.com/cdn/shop/files/Spider-Plant-4_2048x_9db66466-44cb-4db2-ac78-00b34a7699b5.jpg?v=1701248056",
       "id": "9k0l",
-      "description": "Spider Plant is a classic houseplant known for its graceful, arching leaves and air-purifying qualities. Great for beginners!"
+      "description": "Spider Plant is a classic houseplant known for its graceful, arching leaves and air-purifying qualities. Great for beginners!",
+      "quantity": 1
     },
     {
       "name": "Philodendron",
@@ -54,7 +60,8 @@
       "salePrice": 35,
       "image": "https://bouqs.com/blog/wp-content/uploads/2024/03/shutterstock_2104522187-min-1080x720.jpg",
       "id": "a1b2",
-      "description": "Philodendron is a lush and easy-to-care-for plant that brings a touch of greenery and calm to your indoor spaces."
+      "description": "Philodendron is a lush and easy-to-care-for plant that brings a touch of greenery and calm to your indoor spaces.",
+      "quantity": 1
     },
     {
       "name": "Pothos",
@@ -62,7 +69,16 @@
       "salePrice": 20,
       "image": "https://pcfb.gumlet.io/images/articles/golden-pothos-in-bright-living-room.png?w=640&h=426&mode=crop&crop=smart&s=82a0ed0199e5f33e3c490ed80e93f62d",
       "id": "c3d4",
-      "description": "Pothos, also called Devil's Ivy, is a fast-growing, trailing plant perfect for hanging baskets and improving indoor air quality."
+      "description": "Pothos, also called Devil's Ivy, is a fast-growing, trailing plant perfect for hanging baskets and improving indoor air quality.",
+      "quantity": 1
+    }
+  ],
+  "register": [
+    {
+      "id": "8cca",
+      "name": "Eman ali",
+      "email": "emanali262770@gmail.com",
+      "password": "12345"
     }
   ]
 }

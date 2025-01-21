@@ -1,64 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { productDelete } from "../Redux/CartSlice";
+import { productDelete, Updatequantity } from "../Redux/CartSlice";
 
 const Cart = () => {
-  const [quantity, setQuantity] = useState({});
-  const [couponCode, setCouponCode] = useState("");
-  const [isCouponApplied, setIsCouponApplied] = useState(false);
-  const [subtotal, setSubtotal] = useState(0);
-  const shippingCost = 20;
-
   const products = useSelector((state) => state.cart);
+  const [total, settotal] = useState(0);
   const dispatch = useDispatch();
-
-  
-  const handleDelete = (id) => {
+  function deleteProduct(id) {
     dispatch(productDelete(id));
-    setQuantity((prev) => {
-      const newQuantity = { ...prev };
-      delete newQuantity[id];
-      return newQuantity;
-    });
-  };
-
-  
-  const handleQuantityChange = (id, change) => {
-    setQuantity((prev) => ({
-      ...prev,
-      [id]: Math.max(1, Math.min(10, (prev[id] || 1) + change)),
-    }));
-  };
-
-
-  const calculateSubtotal = () => {
-    const total = products.reduce(
-      (acc, product) => acc + product.originalPrice * (quantity[product.id] || 1),
-      0
-    );
-    setSubtotal(total);
-  };
-
-
-  const handleCouponApply = () => {
-    if (couponCode === "eman" && !isCouponApplied) {
-      setSubtotal((prev) => prev - 10);
-      setCouponCode("");
-      setIsCouponApplied(true);
-    } else {
-      alert("Invalid coupon code.");
+  }
+  function updateQuantity(id, amount) {
+    const findProduct = products.find((item) => item.id == id);
+    if (findProduct) {
+      const newamount = Math.max(findProduct.quantity + amount, 1);
+      dispatch(Updatequantity({ id, quantity: newamount }));
     }
+  }
+
+  const calculateTotal = () => {
+    const price = products.reduce((amount, product) => {
+      return amount + product.originalPrice * product.quantity;
+    }, 0);
+    settotal(price);
   };
 
   useEffect(() => {
-    calculateSubtotal();
-  }, [quantity, products]);
+    calculateTotal();
+  }, [products]);
 
   return (
     <div className="min-h-screen">
       <div className="container mx-auto py-8 px-4 lg:px-16">
-        <h1 className="text-4xl font-semibold mb-6">Shopping cart</h1>
-        <div className="grid grid-cols-1 items-center lg:grid-cols-3 gap-8">        
+        <h1 className="text-4xl font-semibold mb-6">Shopping Cart</h1>
+        <div className="grid grid-cols-1 items-center lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-md">
             {products.length > 0 ? (
               products.map((product) => (
@@ -77,27 +51,25 @@ const Cart = () => {
                   </div>
                   <div className="flex items-center space-x-4">
                     <button
-                      disabled={quantity[product.id] === 1}
-                      onClick={() => handleQuantityChange(product.id, -1)}
-                      className={`px-3 py-1 text-xl bg-gray-200 rounded ${
-                        quantity[product.id] === 1
+                      disabled={product.quantity == 1}
+                      onClick={() => updateQuantity(product.id, -1)}
+                      className={`px-3 py-1 text-xl ${
+                        product.quantity == 1
                           ? "bg-red-600 text-white"
                           : "bg-gray-200"
-                      }`}
+                      } bg-gray-200 rounded`}
                     >
                       -
                     </button>
-                    <p className="text-lg font-medium">
-                      {quantity[product.id] || 1}
-                    </p>
+                    <p className="text-lg font-medium">{product.quantity}</p>
                     <button
-                      disabled={quantity[product.id] === 10}
-                      onClick={() => handleQuantityChange(product.id, 1)}
-                      className={`px-3 py-1 text-xl bg-gray-200 rounded ${
-                        quantity[product.id] === 10
+                      disabled={product.quantity == 10}
+                      onClick={() => updateQuantity(product.id, 1)}
+                      className={`px-3 py-1 text-xl ${
+                        product.quantity == 10
                           ? "bg-red-600 text-white"
                           : "bg-gray-200"
-                      }`}
+                      } bg-gray-200 rounded`}
                     >
                       +
                     </button>
@@ -106,7 +78,7 @@ const Cart = () => {
                     ${product.originalPrice}
                   </p>
                   <button
-                    onClick={() => handleDelete(product.id)}
+                    onClick={() => deleteProduct(product.id)}
                     className="text-red-500 text-3xl mt-[-5px] hover:text-red-700"
                   >
                     &times;
@@ -119,38 +91,29 @@ const Cart = () => {
               </h1>
             )}
           </div>
-       
+
+          {/* Summary Section */}
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-lg font-semibold mb-4">Summary</h2>
             <div className="flex justify-between mb-4">
               <p>Subtotal</p>
-              <p>${subtotal}</p>
+              <p>${total}</p>
             </div>
             <div className="flex justify-between mb-4">
               <p>Shipping</p>
-              <p>${shippingCost}</p>
+              <p>$20</p>
             </div>
             <div className="flex justify-between font-semibold text-lg">
               <p>Total</p>
-              <p>USD ${subtotal + shippingCost}</p>
+              <p>USD ${total + 20}</p>
             </div>
             <div>
               <input
                 type="text"
                 placeholder="Enter coupon code here"
-                value={couponCode}
-                onChange={(e) => setCouponCode(e.target.value)}
                 className="w-full mt-4 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
               />
-              <button
-                onClick={handleCouponApply}
-                className={`w-full mt-4 ${
-                  isCouponApplied
-                    ? "bg-gray-500"
-                    : "bg-black hover:bg-gray-800"
-                } text-white py-3 rounded-lg`}
-                disabled={isCouponApplied}
-              >
+              <button className="w-full mt-4 bg-black hover:bg-gray-800 text-white py-3 rounded-lg">
                 Apply
               </button>
             </div>
